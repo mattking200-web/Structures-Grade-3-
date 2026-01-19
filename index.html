@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazing Structures! - Grade 3 Science</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Fredoka:wght@400;600&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B9D;
+            --secondary: #FEC84D;
+            --accent: #4ECDC4;
+            --purple: #A78BFA;
+            --orange: #FB923C;
+            --green: #4ADE80;
+            --blue: #60A5FA;
+            --bg: #FFF9F0;
+            --card-bg: #FFFFFF;
+            --text: #2D3748;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .shape:nth-child(2) { top: 60%; left: 80%; animation-delay: 5s; }
+        .shape:nth-child(3) { top: 40%; left: 20%; animation-delay: 10s; }
+        .shape:nth-child(4) { top: 80%; left: 60%; animation-delay: 15s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        h1 {
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: 3.5rem;
+            color: white;
+            text-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+            margin-bottom: 0.5rem;
+            position: relative;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: white;
+            font-weight: 600;
+            position: relative;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, var(--accent), var(--blue));
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 15px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 0 rgba(0,0,0,0.2);
+        }
+
+        .nav-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--purple));
+            transform: scale(1.05);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 4px solid;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent), var(--purple));
+        }
+
+        .card h2 {
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .card p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Interactive Activities */
+        .activity-box {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 3px dashed var(--orange);
+        }
+
+        .activity-box h3 {
+            color: var(--orange);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .draggable-area {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .drag-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            cursor: move;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 3px solid var(--accent);
+            font-size: 1.1rem;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .drag-item:hover {
+            transform: rotate(-2deg) scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .drop-zone {
+            background: rgba(78, 205, 196, 0.2);
+            border: 3px dashed var(--accent);
+            border-radius: 15px;
+            padding: 2rem;
+            min-height: 150px;
+            margin: 1rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: all 0.3s;
+        }
+
+        .drop-zone.drag-over {
+            background: rgba(78, 205, 196, 0.4);
+            transform: scale(1.02);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--green), var(--accent));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 0 rgba(0,0,0,0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+        }
+
+        .btn-check {
+            background: linear-gradient(135deg, var(--primary), var(--purple));
+        }
+
+        .btn-reset {
+            background: linear-gradient(135deg, var(--orange), var(--secondary));
+        }
+
+        /* Quiz Styles */
+        .quiz-box {
+            background: linear-gradient(135deg, #E0E7FF 0%, #C7D2FE 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 3px solid var(--purple);
+        }
+
+        .quiz-box h3 {
+            color: var(--purple);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .question {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .question h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .option {
+            background: #F3F4F6;
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            font-size: 1.1rem;
+        }
+
+        .option:hover {
+            background: #E5E7EB;
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            border-color: var(--blue);
+            background: #DBEAFE;
+        }
+
+        .option.correct {
+            border-color: var(--green);
+            background: #D1FAE5;
+        }
+
+        .option.incorrect {
+            border-color: #EF4444;
+            background: #FEE2E2;
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+            animation: slideIn 0.5s;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feedback.correct {
+            background: #D1FAE5;
+            color: #065F46;
+            border: 2px solid var(--green);
+        }
+
+        .feedback.incorrect {
+            background: #FEE2E2;
+            color: #991B1B;
+            border: 2px solid #EF4444;
+        }
+
+        .score-display {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .example-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 3px solid;
+            transition: all 0.3s;
+        }
+
+        .example-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .slider-container {
+            margin: 2rem 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 15px;
+            border-radius: 10px;
+            outline: none;
+            -webkit-appearance: none;
+            background: #E5E7EB;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .visual-demo {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Success Animation */
+        @keyframes success {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .success {
+            animation: success 0.5s ease-in-out;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .card h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .home-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 4px solid;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-10px) rotate(-2deg);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .topic-card .icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        .topic-card h3 {
+            color: var(--text);
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-shapes">
+        <svg class="shape" width="100" height="100" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" fill="#FF6B9D"/>
+        </svg>
+        <svg class="shape" width="100" height="100" viewBox="0 0 100 100">
+            <rect x="10" y="10" width="80" height="80" fill="#4ECDC4"/>
+        </svg>
+        <svg class="shape" width="100" height="100" viewBox="0 0 100 100">
+            <polygon points="50,10 90,90 10,90" fill="#FEC84D"/>
+        </svg>
+        <svg class="shape" width="100" height="100" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" fill="#A78BFA"/>
+        </svg>
+    </div>
+
+    <header>
+        <h1>🏗️ Amazing Structures! 🏗️</h1>
+        <p class="subtitle">Let's Build Our Knowledge Together!</p>
+    </header>
+
+    <nav>
+        <div class="nav-grid">
+            <button class="nav-btn active" onclick="showPage('home')">🏠 Home</button>
+            <button class="nav-btn" onclick="showPage('d21')">D2.1 - What Are Structures?</button>
+            <button class="nav-btn" onclick="showPage('d22')">D2.2 - Form & Function</button>
+            <button class="nav-btn" onclick="showPage('d23')">D2.3 - Strength</button>
+            <button class="nav-btn" onclick="showPage('d24')">D2.4 - Stability</button>
+            <button class="nav-btn" onclick="showPage('d25')">D2.5 - Materials</button>
+            <button class="nav-btn" onclick="showPage('d26')">D2.6 - Forces</button>
+            <button class="nav-btn" onclick="showPage('d27')">D2.7 - Struts & Ties</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- HOME PAGE -->
+        <div id="home" class="page active">
+            <div class="card" style="border-color: var(--primary);">
+                <h2>Welcome, Young Engineers! 👷‍♀️👷‍♂️</h2>
+                <p>Get ready for an exciting adventure learning about structures! Structures are all around us - from the bridges we cross to the buildings we live in, and even in nature!</p>
+                <p>Click on any topic below to start learning. Each lesson has fun activities and a quiz to test your knowledge!</p>
+            </div>
+
+            <div class="home-grid">
+                <div class="topic-card" style="border-color: #FF6B9D;" onclick="showPage('d21')">
+                    <div class="icon">🏛️</div>
+                    <h3>What Are Structures?</h3>
+                    <p>Learn what makes something a structure!</p>
+                </div>
+                <div class="topic-card" style="border-color: #FEC84D;" onclick="showPage('d22')">
+                    <div class="icon">🔧</div>
+                    <h3>Form & Function</h3>
+                    <p>How shape affects what structures can do!</p>
+                </div>
+                <div class="topic-card" style="border-color: #4ECDC4;" onclick="showPage('d23')">
+                    <div class="icon">💪</div>
+                    <h3>Strength</h3>
+                    <p>What makes structures strong?</p>
+                </div>
+                <div class="topic-card" style="border-color: #A78BFA;" onclick="showPage('d24')">
+                    <div class="icon">⚖️</div>
+                    <h3>Stability</h3>
+                    <p>Keeping structures balanced!</p>
+                </div>
+                <div class="topic-card" style="border-color: #FB923C;" onclick="showPage('d25')">
+                    <div class="icon">🧱</div>
+                    <h3>Materials</h3>
+                    <p>Choosing the right materials!</p>
+                </div>
+                <div class="topic-card" style="border-color: #4ADE80;" onclick="showPage('d26')">
+                    <div class="icon">💨</div>
+                    <h3>Forces</h3>
+                    <p>How forces affect structures!</p>
+                </div>
+                <div class="topic-card" style="border-color: #60A5FA;" onclick="showPage('d27')">
+                    <div class="icon">🏗️</div>
+                    <h3>Struts & Ties</h3>
+                    <p>Important parts of structures!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- D2.1 PAGE -->
+        <div id="d21" class="page">
+            <div class="card" style="border-color: #FF6B9D;">
+                <h2>D2.1 - What Are Structures? 🏛️</h2>
+                <p>A <strong>structure</strong> is a supporting framework that:</p>
+                <ul style="font-size: 1.2rem; margin-left: 2rem; line-height: 2;">
+                    <li>Holds a load (carries weight)</li>
+                    <li>Has a definite size</li>
+                    <li>Has a definite shape</li>
+                    <li>Has a specific function (job to do)</li>
+                </ul>
+
+                <h3>Structures in Nature 🌳</h3>
+                <div class="example-grid">
+                    <div class="example-card" style="border-color: var(--green);">
+                        <div class="icon">🌳</div>
+                        <h4>Trees</h4>
+                        <p>The trunk holds up branches and leaves!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--blue);">
+                        <div class="icon">🦴</div>
+                        <h4>Skeletons</h4>
+                        <p>Bones support our bodies!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--orange);">
+                        <div class="icon">🐚</div>
+                        <h4>Shells</h4>
+                        <p>Protect and support sea creatures!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--purple);">
+                        <div class="icon">🕷️</div>
+                        <h4>Spider Webs</h4>
+                        <p>Strong framework for catching food!</p>
+                    </div>
+                </div>
+
+                <h3>Structures People Build 🏗️</h3>
+                <div class="example-grid">
+                    <div class="example-card" style="border-color: var(--primary);">
+                        <div class="icon">🏠</div>
+                        <h4>Houses</h4>
+                        <p>Shelter and protection!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--accent);">
+                        <div class="icon">🌉</div>
+                        <h4>Bridges</h4>
+                        <p>Help us cross rivers and valleys!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--secondary);">
+                        <div class="icon">🗼</div>
+                        <h4>Towers</h4>
+                        <p>Tall structures for communication!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--green);">
+                        <div class="icon">🎢</div>
+                        <h4>Roller Coasters</h4>
+                        <p>Fun rides with strong supports!</p>
+                    </div>
+                </div>
+
+                <div class="activity-box">
+                    <h3>🎯 Activity: Sort the Structures!</h3>
+                    <p>Drag each item to the correct category - Natural or Built by People!</p>
+                    
+                    <div class="draggable-area" id="d21-items">
+                        <div class="drag-item" draggable="true" data-category="natural">🌲 Pine Tree</div>
+                        <div class="drag-item" draggable="true" data-category="built">🏢 Skyscraper</div>
+                        <div class="drag-item" draggable="true" data-category="natural">🦅 Bird's Nest</div>
+                        <div class="drag-item" draggable="true" data-category="built">🏟️ Stadium</div>
+                        <div class="drag-item" draggable="true" data-category="natural">🐝 Beehive</div>
+                        <div class="drag-item" draggable="true" data-category="built">🚁 Helicopter</div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;">
+                        <div>
+                            <h4 style="text-align: center; color: var(--green);">🌿 Natural Structures</h4>
+                            <div class="drop-zone" data-category="natural"></div>
+                        </div>
+                        <div>
+                            <h4 style="text-align: center; color: var(--blue);">🏗️ Built Structures</h4>
+                            <div class="drop-zone" data-category="built"></div>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn btn-check" onclick="checkD21Activity()">Check My Answers!</button>
+                        <button class="btn btn-reset" onclick="resetD21Activity()">Reset</button>
+                    </div>
+                    <div id="d21-feedback" class="feedback"></div>
+                </div>
+
+                <div class="quiz-box">
+                    <h3>📝 Quiz Time!</h3>
+                    <div id="d21-quiz"></div>
+                    <button class="btn btn-check" onclick="checkQuiz('d21')" style="margin-top: 1rem;">Submit Quiz</button>
+                    <div id="d21-quiz-score" class="score-display" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- D2.2 PAGE -->
+        <div id="d22" class="page">
+            <div class="card" style="border-color: #FEC84D;">
+                <h2>D2.2 - Form and Function 🔧</h2>
+                <p><strong>Form</strong> means the shape of a structure. <strong>Function</strong> means what job it does!</p>
+                <p>The shape of a structure is connected to what it needs to do. Let's explore how!</p>
+
+                <h3>How Shape Affects Function</h3>
+                <div class="example-grid">
+                    <div class="example-card" style="border-color: var(--primary);">
+                        <div class="icon">🔺</div>
+                        <h4>Triangle Shape</h4>
+                        <p>Very strong! Used in bridges and roofs.</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--accent);">
+                        <div class="icon">🟦</div>
+                        <h4>Square Shape</h4>
+                        <p>Good for rooms and boxes. Easy to stack!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--purple);">
+                        <div class="icon">⭕</div>
+                        <h4>Circle Shape</h4>
+                        <p>Great for wheels and tunnels!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--green);">
+                        <div class="icon">🏹</div>
+                        <h4>Curved Shape</h4>
+                        <p>Helps with movement through air or water!</p>
+                    </div>
+                </div>
+
+                <div class="activity-box">
+                    <h3>🎯 Activity: Match Form to Function!</h3>
+                    <p>Match each structure to its best shape!</p>
+                    
+                    <div id="d22-matching" style="display: grid; gap: 1rem; margin: 2rem 0;">
+                        <div style="background: white; padding: 1.5rem; border-radius: 15px; border: 3px solid var(--accent);">
+                            <p style="font-weight: 600; margin-bottom: 1rem;">1. A roof that needs to shed rain and snow:</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 'd22-q1', 'triangle')">🔺 Triangle (slanted)</div>
+                                <div class="option" onclick="selectOption(this, 'd22-q1', 'flat')">⬜ Flat</div>
+                                <div class="option" onclick="selectOption(this, 'd22-q1', 'circle')">⭕ Circle</div>
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: 1.5rem; border-radius: 15px; border: 3px solid var(--accent);">
+                            <p style="font-weight: 600; margin-bottom: 1rem;">2. A tunnel for cars to drive through:</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 'd22-q2', 'square')">⬜ Square</div>
+                                <div class="option" onclick="selectOption(this, 'd22-q2', 'arch')">🌈 Arch/Curved</div>
+                                <div class="option" onclick="selectOption(this, 'd22-q2', 'triangle')">🔺 Triangle</div>
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: 1.5rem; border-radius: 15px; border: 3px solid var(--accent);">
+                            <p style="font-weight: 600; margin-bottom: 1rem;">3. An airplane that needs to fly fast:</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 'd22-q3', 'box')">📦 Box shape</div>
+                                <div class="option" onclick="selectOption(this, 'd22-q3', 'streamlined')">🚀 Streamlined (pointed)</div>
+                                <div class="option" onclick="selectOption(this, 'd22-q3', 'flat')">⬜ Flat</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-check" onclick="checkD22Activity()">Check My Matches!</button>
+                    <div id="d22-feedback" class="feedback"></div>
+                </div>
+
+                <div class="quiz-box">
+                    <h3>📝 Quiz Time!</h3>
+                    <div id="d22-quiz"></div>
+                    <button class="btn btn-check" onclick="checkQuiz('d22')" style="margin-top: 1rem;">Submit Quiz</button>
+                    <div id="d22-quiz-score" class="score-display" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- D2.3 PAGE -->
+        <div id="d23" class="page">
+            <div class="card" style="border-color: #4ECDC4;">
+                <h2>D2.3 - Strength of Structures 💪</h2>
+                <p><strong>Strength</strong> is a structure's ability to support a load without breaking or bending!</p>
+                
+                <h3>Ways to Make Structures Stronger</h3>
+                <div class="example-grid">
+                    <div class="example-card" style="border-color: var(--primary);">
+                        <div class="icon">🔺</div>
+                        <h4>Use Triangles</h4>
+                        <p>Triangles are the strongest shape!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--secondary);">
+                        <div class="icon">➕</div>
+                        <h4>Add More Material</h4>
+                        <p>Thicker materials are stronger!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--purple);">
+                        <div class="icon">🏗️</div>
+                        <h4>Add Supports</h4>
+                        <p>Extra beams help carry weight!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--green);">
+                        <div class="icon">🔗</div>
+                        <h4>Connect Parts</h4>
+                        <p>Good connections make structures stronger!</p>
+                    </div>
+                </div>
+
+                <div class="activity-box">
+                    <h3>🎯 Activity: Build a Strong Tower!</h3>
+                    <p>Use the slider to add layers. Watch how the structure gets stronger!</p>
+                    
+                    <div class="visual-demo">
+                        <div style="margin-bottom: 2rem;">
+                            <label style="font-size: 1.3rem; font-weight: 600;">Number of Support Layers: <span id="d23-layers">1</span></label>
+                            <input type="range" min="1" max="5" value="1" class="slider" id="d23-slider">
+                        </div>
+                        
+                        <div id="d23-tower" style="display: flex; flex-direction: column-reverse; align-items: center; min-height: 300px; justify-content: flex-start;">
+                            <div style="background: linear-gradient(135deg, var(--accent), var(--blue)); height: 80px; width: 200px; border-radius: 10px; margin: 5px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+                                Layer 1
+                            </div>
+                        </div>
+                        
+                        <p style="font-size: 1.2rem; margin-top: 1rem; font-weight: 600; color: var(--accent);">
+                            Load Capacity: <span id="d23-capacity">100</span> kg
+                        </p>
+                    </div>
+
+                    <div style="background: white; padding: 1.5rem; border-radius: 15px; margin-top: 2rem; border: 3px solid var(--accent);">
+                        <h4 style="color: var(--accent);">💡 What Did You Learn?</h4>
+                        <p style="font-size: 1.1rem;">As you add more layers (supports), the tower can hold more weight! This shows that adding material and support makes structures stronger.</p>
+                    </div>
+                </div>
+
+                <div class="quiz-box">
+                    <h3>📝 Quiz Time!</h3>
+                    <div id="d23-quiz"></div>
+                    <button class="btn btn-check" onclick="checkQuiz('d23')" style="margin-top: 1rem;">Submit Quiz</button>
+                    <div id="d23-quiz-score" class="score-display" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- D2.4 PAGE -->
+        <div id="d24" class="page">
+            <div class="card" style="border-color: #A78BFA;">
+                <h2>D2.4 - Stability of Structures ⚖️</h2>
+                <p><strong>Stability</strong> means a structure can:</p>
+                <ul style="font-size: 1.2rem; margin-left: 2rem; line-height: 2;">
+                    <li>Keep its shape when forces are applied</li>
+                    <li>Maintain balance</li>
+                    <li>Float (for water structures)</li>
+                    <li>Stay fixed in one spot</li>
+                </ul>
+
+                <h3>How to Improve Stability</h3>
+                <div class="example-grid">
+                    <div class="example-card" style="border-color: var(--primary);">
+                        <div class="icon">📐</div>
+                        <h4>Wide Base</h4>
+                        <p>Wider bases are more stable!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--secondary);">
+                        <div class="icon">⚖️</div>
+                        <h4>Lower Center</h4>
+                        <p>Weight near the bottom helps balance!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--accent);">
+                        <div class="icon">⚓</div>
+                        <h4>Anchoring</h4>
+                        <p>Attaching to ground prevents tipping!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--purple);">
+                        <div class="icon">🔄</div>
+                        <h4>Symmetry</h4>
+                        <p>Balanced design on all sides!</p>
+                    </div>
+                </div>
+
+                <div class="activity-box">
+                    <h3>🎯 Activity: Test Stability!</h3>
+                    <p>Click on each tower to see which one is more stable!</p>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+                        <div style="text-align: center;">
+                            <h4 style="color: var(--purple);">Tower A - Narrow Base</h4>
+                            <div style="background: white; padding: 2rem; border-radius: 15px; min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; cursor: pointer; border: 3px solid var(--purple);" onclick="tiltTower('A')">
+                                <div id="towerA" style="transition: transform 0.5s; display: flex; flex-direction: column; align-items: center;">
+                                    <div style="background: var(--primary); width: 80px; height: 100px; border-radius: 8px;"></div>
+                                    <div style="background: var(--accent); width: 60px; height: 30px; border-radius: 5px; margin-top: 5px;"></div>
+                                </div>
+                            </div>
+                            <p id="resultA" style="font-weight: 600; margin-top: 1rem; min-height: 2rem;"></p>
+                        </div>
+
+                        <div style="text-align: center;">
+                            <h4 style="color: var(--green);">Tower B - Wide Base</h4>
+                            <div style="background: white; padding: 2rem; border-radius: 15px; min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; cursor: pointer; border: 3px solid var(--green);" onclick="tiltTower('B')">
+                                <div id="towerB" style="transition: transform 0.5s; display: flex; flex-direction: column; align-items: center;">
+                                    <div style="background: var(--primary); width: 80px; height: 100px; border-radius: 8px;"></div>
+                                    <div style="background: var(--accent); width: 140px; height: 30px; border-radius: 5px; margin-top: 5px;"></div>
+                                </div>
+                            </div>
+                            <p id="resultB" style="font-weight: 600; margin-top: 1rem; min-height: 2rem;"></p>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-reset" onclick="resetTowers()">Reset Towers</button>
+                </div>
+
+                <div class="quiz-box">
+                    <h3>📝 Quiz Time!</h3>
+                    <div id="d24-quiz"></div>
+                    <button class="btn btn-check" onclick="checkQuiz('d24')" style="margin-top: 1rem;">Submit Quiz</button>
+                    <div id="d24-quiz-score" class="score-display" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- D2.5 PAGE -->
+        <div id="d25" class="page">
+            <div class="card" style="border-color: #FB923C;">
+                <h2>D2.5 - Properties of Materials 🧱</h2>
+                <p>When building structures, we need to think about the <strong>properties</strong> (qualities) of materials!</p>
+
+                <h3>Important Material Properties</h3>
+                <div class="example-grid">
+                    <div class="example-card" style="border-color: var(--primary);">
+                        <div class="icon">💪</div>
+                        <h4>Strength</h4>
+                        <p>How much weight can it hold?</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--secondary);">
+                        <div class="icon">🌊</div>
+                        <h4>Flexibility</h4>
+                        <p>Can it bend without breaking?</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--accent);">
+                        <div class="icon">💧</div>
+                        <h4>Waterproof</h4>
+                        <p>Does water damage it?</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--purple);">
+                        <div class="icon">⚖️</div>
+                        <h4>Weight</h4>
+                        <p>Is it light or heavy?</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--green);">
+                        <div class="icon">💰</div>
+                        <h4>Cost</h4>
+                        <p>Is it expensive or cheap?</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--blue);">
+                        <div class="icon">♻️</div>
+                        <h4>Durability</h4>
+                        <p>Does it last a long time?</p>
+                    </div>
+                </div>
+
+                <div class="activity-box">
+                    <h3>🎯 Activity: Choose the Best Material!</h3>
+                    <p>For each building project, choose the best material!</p>
+                    
+                    <div id="d25-scenarios" style="display: grid; gap: 1.5rem; margin: 2rem 0;">
+                        <div style="background: white; padding: 1.5rem; border-radius: 15px; border: 3px solid var(--accent);">
+                            <p style="font-weight: 600; margin-bottom: 1rem;">🏖️ 1. Building a dock at the beach (gets wet often):</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 'd25-q1', 'wood')">🪵 Treated Wood</div>
+                                <div class="option" onclick="selectOption(this, 'd25-q1', 'paper')">📄 Paper</div>
+                                <div class="option" onclick="selectOption(this, 'd25-q1', 'fabric')">🧵 Fabric</div>
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: 1.5rem; border-radius: 15px; border: 3px solid var(--accent);">
+                            <p style="font-weight: 600; margin-bottom: 1rem;">🎪 2. Building a tent (needs to be light and flexible):</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 'd25-q2', 'concrete')">🧱 Concrete</div>
+                                <div class="option" onclick="selectOption(this, 'd25-q2', 'fabric')">⛺ Nylon Fabric</div>
+                                <div class="option" onclick="selectOption(this, 'd25-q2', 'steel')">🔩 Steel Plates</div>
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: 1.5rem; border-radius: 15px; border: 3px solid var(--accent);">
+                            <p style="font-weight: 600; margin-bottom: 1rem;">🌉 3. Building a bridge (needs to be very strong):</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 'd25-q3', 'plastic')">🥤 Plastic Straws</div>
+                                <div class="option" onclick="selectOption(this, 'd25-q3', 'steel')">🏗️ Steel Beams</div>
+                                <div class="option" onclick="selectOption(this, 'd25-q3', 'foam')">🧽 Foam</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-check" onclick="checkD25Activity()">Check My Choices!</button>
+                    <div id="d25-feedback" class="feedback"></div>
+                </div>
+
+                <div class="quiz-box">
+                    <h3>📝 Quiz Time!</h3>
+                    <div id="d25-quiz"></div>
+                    <button class="btn btn-check" onclick="checkQuiz('d25')" style="margin-top: 1rem;">Submit Quiz</button>
+                    <div id="d25-quiz-score" class="score-display" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- D2.6 PAGE -->
+        <div id="d26" class="page">
+            <div class="card" style="border-color: #4ADE80;">
+                <h2>D2.6 - Forces Affecting Structures 💨</h2>
+                <p>A <strong>force</strong> is a push or pull that can change a structure's shape, balance, or position!</p>
+
+                <h3>Types of Forces</h3>
+                <div class="example-grid">
+                    <div class="example-card" style="border-color: var(--primary);">
+                        <div class="icon">⬇️</div>
+                        <h4>Gravity</h4>
+                        <p>Pulls everything down toward Earth!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--secondary);">
+                        <div class="icon">💨</div>
+                        <h4>Wind</h4>
+                        <p>Pushes against structures sideways!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--accent);">
+                        <div class="icon">🌊</div>
+                        <h4>Water Pressure</h4>
+                        <p>Pushes on structures in water!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--purple);">
+                        <div class="icon">📦</div>
+                        <h4>Loads</h4>
+                        <p>Weight of things on the structure!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--green);">
+                        <div class="icon">❄️</div>
+                        <h4>Snow & Ice</h4>
+                        <p>Add weight to roofs and structures!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--blue);">
+                        <div class="icon">🚗</div>
+                        <h4>Vibrations</h4>
+                        <p>Shaking from cars, trains, earthquakes!</p>
+                    </div>
+                </div>
+
+                <div class="activity-box">
+                    <h3>🎯 Activity: Apply Forces!</h3>
+                    <p>Click the buttons to see how different forces affect a house!</p>
+                    
+                    <div class="visual-demo">
+                        <div style="margin-bottom: 2rem;">
+                            <div id="d26-house" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 250px; transition: all 0.5s;">
+                                <div style="width: 0; height: 0; border-left: 75px solid transparent; border-right: 75px solid transparent; border-bottom: 60px solid #EF4444;"></div>
+                                <div style="width: 150px; height: 120px; background: #FEF3C7; border: 4px solid var(--orange); border-radius: 10px;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="button-group" style="justify-content: center;">
+                            <button class="btn" onclick="applyForce('gravity')" style="background: linear-gradient(135deg, #9333EA, #7C3AED);">⬇️ Gravity</button>
+                            <button class="btn" onclick="applyForce('wind')" style="background: linear-gradient(135deg, #60A5FA, #3B82F6);">💨 Wind</button>
+                            <button class="btn" onclick="applyForce('snow')" style="background: linear-gradient(135deg, #E0E7FF, #C7D2FE);">❄️ Snow</button>
+                            <button class="btn btn-reset" onclick="resetForces()">🔄 Reset</button>
+                        </div>
+                        
+                        <p id="d26-message" style="font-size: 1.2rem; margin-top: 1rem; font-weight: 600; min-height: 3rem; color: var(--accent);"></p>
+                    </div>
+                </div>
+
+                <div class="quiz-box">
+                    <h3>📝 Quiz Time!</h3>
+                    <div id="d26-quiz"></div>
+                    <button class="btn btn-check" onclick="checkQuiz('d26')" style="margin-top: 1rem;">Submit Quiz</button>
+                    <div id="d26-quiz-score" class="score-display" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- D2.7 PAGE -->
+        <div id="d27" class="page">
+            <div class="card" style="border-color: #60A5FA;">
+                <h2>D2.7 - Struts and Ties 🏗️</h2>
+                <p>Structures have special parts that help them stay strong under load!</p>
+
+                <h3>What Are Struts? 💪</h3>
+                <p style="font-size: 1.2rem; line-height: 1.8;">
+                    <strong>Struts</strong> are parts that are <em>pushed</em> or compressed. They help support weight by pushing back against forces. Think of the legs of a table - they're being pushed by the weight of the table!
+                </p>
+
+                <h3>What Are Ties? 🔗</h3>
+                <p style="font-size: 1.2rem; line-height: 1.8;">
+                    <strong>Ties</strong> are parts that are <em>pulled</em> or under tension. They help hold things together. Think of a rope in a tent - it's being pulled tight!
+                </p>
+
+                <div class="example-grid">
+                    <div class="example-card" style="border-color: var(--primary);">
+                        <div class="icon">🏛️</div>
+                        <h4>Columns (Struts)</h4>
+                        <p>Hold up buildings by being compressed!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--secondary);">
+                        <div class="icon">🎪</div>
+                        <h4>Tent Ropes (Ties)</h4>
+                        <p>Pull tight to keep tent standing!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--accent);">
+                        <div class="icon">🌉</div>
+                        <h4>Bridge Cables (Ties)</h4>
+                        <p>Support the bridge by pulling!</p>
+                    </div>
+                    <div class="example-card" style="border-color: var(--purple);">
+                        <div class="icon">🏗️</div>
+                        <h4>Beams (Struts)</h4>
+                        <p>Support floors and roofs!</p>
+                    </div>
+                </div>
+
+                <div class="activity-box">
+                    <h3>🎯 Activity: Identify Struts and Ties!</h3>
+                    <p>Look at each structure part and decide if it's a STRUT (pushed) or TIE (pulled)!</p>
+                    
+                    <div id="d27-items" style="display: grid; gap: 1.5rem; margin: 2rem 0;">
+                        <div style="background: white; padding: 1.5rem; border-radius: 15px; border: 3px solid var(--accent);">
+                            <p style="font-weight: 600; margin-bottom: 1rem;">🏛️ 1. A column holding up a building:</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 'd27-q1', 'strut')">💪 Strut (being pushed)</div>
+                                <div class="option" onclick="selectOption(this, 'd27-q1', 'tie')">🔗 Tie (being pulled)</div>
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: 1.5rem; border-radius: 15px; border: 3px solid var(--accent);">
+                            <p style="font-weight: 600; margin-bottom: 1rem;">🌉 2. A cable on a suspension bridge:</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 'd27-q2', 'strut')">💪 Strut (being pushed)</div>
+                                <div class="option" onclick="selectOption(this, 'd27-q2', 'tie')">🔗 Tie (being pulled)</div>
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: 1.5rem; border-radius: 15px; border: 3px solid var(--accent);">
+                            <p style="font-weight: 600; margin-bottom: 1rem;">🪑 3. The legs of a chair:</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 'd27-q3', 'strut')">💪 Strut (being pushed)</div>
+                                <div class="option" onclick="selectOption(this, 'd27-q3', 'tie')">🔗 Tie (being pulled)</div>
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: 1.5rem; border-radius: 15px; border: 3px solid var(--accent);">
+                            <p style="font-weight: 600; margin-bottom: 1rem;">⛺ 4. The ropes holding a tent to the ground:</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 'd27-q4', 'strut')">💪 Strut (being pushed)</div>
+                                <div class="option" onclick="selectOption(this, 'd27-q4', 'tie')">🔗 Tie (being pulled)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-check" onclick="checkD27Activity()">Check My Answers!</button>
+                    <div id="d27-feedback" class="feedback"></div>
+                </div>
+
+                <div class="quiz-box">
+                    <h3>📝 Quiz Time!</h3>
+                    <div id="d27-quiz"></div>
+                    <button class="btn btn-check" onclick="checkQuiz('d27')" style="margin-top: 1rem;">Submit Quiz</button>
+                    <div id="d27-quiz-score" class="score-display" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz Questions Database
+        const quizData = {
+            d21: [
+                {
+                    question: "What is a structure?",
+                    options: ["Something that holds a load and has a size, shape, and function", "Only buildings made by people", "Just things found in nature", "Any object that is big"],
+                    correct: 0
+                },
+                {
+                    question: "Which of these is a natural structure?",
+                    options: ["A skyscraper", "A tree trunk", "A bridge", "A car"],
+                    correct: 1
+                },
+                {
+                    question: "A spider web is an example of what kind of structure?",
+                    options: ["Built structure", "Natural structure", "Not a structure", "A machine"],
+                    correct: 1
+                },
+                {
+                    question: "What does it mean for a structure to have a function?",
+                    options: ["It has color", "It has a job to do", "It is expensive", "It is old"],
+                    correct: 1
+                },
+                {
+                    question: "Which is a structure built by people?",
+                    options: ["A bird's nest", "A mountain", "A stadium", "A coral reef"],
+                    correct: 2
+                }
+            ],
+            d22: [
+                {
+                    question: "What does 'form' mean when talking about structures?",
+                    options: ["The color of the structure", "The shape of the structure", "How much it costs", "Who built it"],
+                    correct: 1
+                },
+                {
+                    question: "What does 'function' mean when talking about structures?",
+                    options: ["What job the structure does", "How old it is", "What color it is", "Where it is located"],
+                    correct: 0
+                },
+                {
+                    question: "Why would an airplane have a streamlined (pointed) shape?",
+                    options: ["To look nice", "To move through air easily", "To hold more people", "To be colorful"],
+                    correct: 1
+                },
+                {
+                    question: "Why are roofs often triangle-shaped?",
+                    options: ["They look pretty", "Rain and snow slide off easily", "They are easy to paint", "They use less material"],
+                    correct: 1
+                },
+                {
+                    question: "Which shape is best for a wheel?",
+                    options: ["Square", "Triangle", "Circle", "Rectangle"],
+                    correct: 2
+                }
+            ],
+            d23: [
+                {
+                    question: "What does 'strength' mean for a structure?",
+                    options: ["How colorful it is", "How much weight it can hold", "How tall it is", "How old it is"],
+                    correct: 1
+                },
+                {
+                    question: "Which shape is known to be the strongest?",
+                    options: ["Circle", "Square", "Triangle", "Pentagon"],
+                    correct: 2
+                },
+                {
+                    question: "How can you make a structure stronger?",
+                    options: ["Paint it different colors", "Add more supports", "Make it taller", "Leave it in the sun"],
+                    correct: 1
+                },
+                {
+                    question: "Why would using thicker materials make a structure stronger?",
+                    options: ["It looks better", "More material can support more weight", "It's easier to build", "It costs less"],
+                    correct: 1
+                },
+                {
+                    question: "What happens if a structure is not strong enough for its load?",
+                    options: ["It becomes stronger", "It might break or bend", "It changes color", "Nothing happens"],
+                    correct: 1
+                }
+            ],
+            d24: [
+                {
+                    question: "What does 'stability' mean?",
+                    options: ["How colorful something is", "The ability to keep shape and balance", "How much it costs", "How fast it moves"],
+                    correct: 1
+                },
+                {
+                    question: "Which type of base makes a structure more stable?",
+                    options: ["Very narrow base", "Wide base", "No base", "Pointed base"],
+                    correct: 1
+                },
+                {
+                    question: "Why do tall buildings need to be stable?",
+                    options: ["So they look nice", "So they don't fall over or tip", "So they are taller", "So they cost less"],
+                    correct: 1
+                },
+                {
+                    question: "Where should heavy weight be placed for better stability?",
+                    options: ["At the very top", "Near the bottom", "In the middle only", "On one side"],
+                    correct: 1
+                },
+                {
+                    question: "What helps anchor a structure to prevent it from moving?",
+                    options: ["Bright colors", "Attaching it to the ground", "Making it very light", "Adding windows"],
+                    correct: 1
+                }
+            ],
+            d25: [
+                {
+                    question: "What is a 'property' of a material?",
+                    options: ["The price of the material", "A quality or characteristic of the material", "Where you buy it", "Who made it"],
+                    correct: 1
+                },
+                {
+                    question: "Which material property is important for building a boat?",
+                    options: ["Being colorful", "Being waterproof", "Being square", "Being transparent"],
+                    correct: 1
+                },
+                {
+                    question: "Why is flexibility an important property for some structures?",
+                    options: ["So they can bend without breaking", "So they are heavier", "So they cost more", "So they are bigger"],
+                    correct: 0
+                },
+                {
+                    question: "What property makes steel good for building bridges?",
+                    options: ["It's light and fluffy", "It's very strong", "It's colorful", "It's transparent"],
+                    correct: 1
+                },
+                {
+                    question: "Why would you choose fabric for a tent instead of concrete?",
+                    options: ["Fabric is stronger", "Fabric is light and flexible", "Fabric costs more", "Fabric is harder"],
+                    correct: 1
+                }
+            ],
+            d26: [
+                {
+                    question: "What is a force?",
+                    options: ["A type of building", "A push or pull", "A material", "A color"],
+                    correct: 1
+                },
+                {
+                    question: "Which force pulls everything down toward Earth?",
+                    options: ["Wind", "Gravity", "Water", "Light"],
+                    correct: 1
+                },
+                {
+                    question: "How can wind affect a structure?",
+                    options: ["Make it heavier", "Push it sideways", "Make it taller", "Change its color"],
+                    correct: 1
+                },
+                {
+                    question: "Why do engineers need to think about snow on roofs?",
+                    options: ["Snow is pretty", "Snow adds weight to the roof", "Snow makes buildings taller", "Snow costs money"],
+                    correct: 1
+                },
+                {
+                    question: "What kind of force happens when cars drive over a bridge?",
+                    options: ["The wind force", "The load force (weight)", "The water force", "The gravity-removing force"],
+                    correct: 1
+                }
+            ],
+            d27: [
+                {
+                    question: "What is a strut?",
+                    options: ["A part being pulled", "A part being pushed or compressed", "A type of tie", "A decoration"],
+                    correct: 1
+                },
+                {
+                    question: "What is a tie?",
+                    options: ["A part being pushed", "A part being pulled or under tension", "A type of strut", "A roof"],
+                    correct: 1
+                },
+                {
+                    question: "The legs of a table are examples of:",
+                    options: ["Ties - they're being pulled", "Struts - they're being compressed", "Neither struts nor ties", "Only decorations"],
+                    correct: 1
+                },
+                {
+                    question: "The cables on a suspension bridge are examples of:",
+                    options: ["Struts - they're being compressed", "Ties - they're being pulled", "Neither struts nor ties", "Only decorations"],
+                    correct: 1
+                },
+                {
+                    question: "Why are struts and ties important in structures?",
+                    options: ["They make structures colorful", "They help structures support loads and stay strong", "They make structures cost less", "They make structures smaller"],
+                    correct: 1
+                }
+            ]
+        };
+
+        // Page Navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(pageId).classList.add('active');
+            event.target.classList.add('active');
+            
+            // Load quiz if not already loaded
+            if (pageId !== 'home' && !document.getElementById(`${pageId}-quiz`).innerHTML) {
+                loadQuiz(pageId);
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        // Load Quiz
+        function loadQuiz(section) {
+            const quizContainer = document.getElementById(`${section}-quiz`);
+            const questions = quizData[section];
+            
+            let html = '';
+            questions.forEach((q, index) => {
+                html += `
+                    <div class="question" data-question="${index}">
+                        <h4>Question ${index + 1}: ${q.question}</h4>
+                        <div class="options">
+                            ${q.options.map((opt, optIndex) => `
+                                <div class="option" onclick="selectQuizOption(this, '${section}', ${index}, ${optIndex})">
+                                    ${opt}
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="feedback" id="${section}-q${index}-feedback"></div>
+                    </div>
+                `;
+            });
+            
+            quizContainer.innerHTML = html;
+        }
+
+        // Select Quiz Option
+        function selectQuizOption(element, section, questionIndex, optionIndex) {
+            const question = element.closest('.question');
+            question.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            element.dataset.selected = optionIndex;
+        }
+
+        // Check Quiz
+        function checkQuiz(section) {
+            const questions = quizData[section];
+            let correct = 0;
+            
+            questions.forEach((q, index) => {
+                const question = document.querySelector(`#${section}-quiz .question[data-question="${index}"]`);
+                const selected = question.querySelector('.option.selected');
+                const feedback = document.getElementById(`${section}-q${index}-feedback`);
+                
+                if (selected) {
+                    const selectedIndex = parseInt(selected.dataset.selected);
+                    question.querySelectorAll('.option').forEach(opt => {
+                        opt.classList.remove('correct', 'incorrect');
+                    });
+                    
+                    if (selectedIndex === q.correct) {
+                        selected.classList.add('correct');
+                        feedback.className = 'feedback correct show';
+                        feedback.textContent = '✓ Correct! Great job!';
+                        correct++;
+                    } else {
+                        selected.classList.add('incorrect');
+                        question.querySelectorAll('.option')[q.correct].classList.add('correct');
+                        feedback.className = 'feedback incorrect show';
+                        feedback.textContent = '✗ Not quite. The correct answer is highlighted in green.';
+                    }
+                }
+            });
+            
+            const scoreDisplay = document.getElementById(`${section}-quiz-score`);
+            scoreDisplay.style.display = 'block';
+            scoreDisplay.innerHTML = `
+                <h3>Your Score: ${correct} / ${questions.length}</h3>
+                <p>${correct === questions.length ? '🎉 Perfect! You\'re a structures expert!' : 
+                     correct >= questions.length * 0.8 ? '🌟 Excellent work!' :
+                     correct >= questions.length * 0.6 ? '👍 Good job! Keep learning!' :
+                     '📚 Keep practicing! Review the lesson and try again!'}</p>
+            `;
+        }
+
+        // D2.1 Activity - Drag and Drop
+        let draggedElement = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const dragItems = document.querySelectorAll('.drag-item');
+            const dropZones = document.querySelectorAll('.drop-zone');
+            
+            dragItems.forEach(item => {
+                item.addEventListener('dragstart', handleDragStart);
+                item.addEventListener('dragend', handleDragEnd);
+            });
+            
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', handleDragOver);
+                zone.addEventListener('drop', handleDrop);
+                zone.addEventListener('dragleave', handleDragLeave);
+            });
+        });
+
+        function handleDragStart(e) {
+            draggedElement = this;
+            this.style.opacity = '0.5';
+        }
+
+        function handleDragEnd(e) {
+            this.style.opacity = '1';
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            this.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            this.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            this.classList.remove('drag-over');
+            
+            if (draggedElement) {
+                this.appendChild(draggedElement);
+                draggedElement = null;
+            }
+        }
+
+        function checkD21Activity() {
+            const dropZones = document.querySelectorAll('#d21 .drop-zone');
+            let correct = 0;
+            let total = 0;
+            
+            dropZones.forEach(zone => {
+                const category = zone.dataset.category;
+                const items = zone.querySelectorAll('.drag-item');
+                
+                items.forEach(item => {
+                    total++;
+                    if (item.dataset.category === category) {
+                        correct++;
+                        item.style.borderColor = '#4ADE80';
+                    } else {
+                        item.style.borderColor = '#EF4444';
+                    }
+                });
+            });
+            
+            const feedback = document.getElementById('d21-feedback');
+            feedback.className = 'feedback show';
+            
+            if (correct === total && total > 0) {
+                feedback.className = 'feedback correct show';
+                feedback.textContent = `🎉 Perfect! You got all ${total} correct!`;
+            } else {
+                feedback.className = 'feedback incorrect show';
+                feedback.textContent = `You got ${correct} out of ${total} correct. Green borders are correct, red need to be moved!`;
+            }
+        }
+
+        function resetD21Activity() {
+            const items = document.querySelectorAll('#d21 .drag-item');
+            const container = document.getElementById('d21-items');
+            
+            items.forEach(item => {
+                item.style.borderColor = '#4ECDC4';
+                container.appendChild(item);
+            });
+            
+            document.getElementById('d21-feedback').className = 'feedback';
+        }
+
+        // D2.2 Activity
+        const d22Answers = {
+            'd22-q1': 'triangle',
+            'd22-q2': 'arch',
+            'd22-q3': 'streamlined'
+        };
+
+        function selectOption(element, questionId, answer) {
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            element.dataset.answer = answer;
+        }
+
+        function checkD22Activity() {
+            let correct = 0;
+            let total = Object.keys(d22Answers).length;
+            
+            Object.keys(d22Answers).forEach(qId => {
+                const selected = document.querySelector(`.option.selected[data-answer]`);
+                const allOptions = document.querySelectorAll(`[onclick*="${qId}"]`);
+                
+                allOptions.forEach(opt => {
+                    if (opt.classList.contains('selected')) {
+                        if (opt.dataset.answer === d22Answers[qId]) {
+                            opt.classList.add('correct');
+                            opt.classList.remove('incorrect');
+                            correct++;
+                        } else {
+                            opt.classList.add('incorrect');
+                            opt.classList.remove('correct');
+                        }
+                    }
+                });
+            });
+            
+            const feedback = document.getElementById('d22-feedback');
+            feedback.className = correct === total ? 'feedback correct show' : 'feedback incorrect show';
+            feedback.textContent = correct === total ? 
+                `🎉 Perfect! All ${total} matches are correct!` : 
+                `You got ${correct} out of ${total} correct. Try the incorrect ones again!`;
+        }
+
+        // D2.3 Activity - Tower Builder
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.getElementById('d23-slider');
+            if (slider) {
+                slider.addEventListener('input', function() {
+                    const layers = parseInt(this.value);
+                    document.getElementById('d23-layers').textContent = layers;
+                    updateTower(layers);
+                });
+            }
+        });
+
+        function updateTower(layers) {
+            const tower = document.getElementById('d23-tower');
+            tower.innerHTML = '';
+            
+            const colors = ['#4ECDC4', '#60A5FA', '#A78BFA', '#F472B6', '#FB923C'];
+            
+            for (let i = 0; i < layers; i++) {
+                const layer = document.createElement('div');
+                layer.style.cssText = `
+                    background: linear-gradient(135deg, ${colors[i % colors.length]}, ${colors[(i + 1) % colors.length]});
+                    height: 80px;
+                    width: ${200 - (i * 20)}px;
+                    border-radius: 10px;
+                    margin: 5px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-weight: 600;
+                    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+                    animation: slideIn 0.5s ease-out;
+                `;
+                layer.textContent = `Layer ${i + 1}`;
+                tower.appendChild(layer);
+            }
+            
+            document.getElementById('d23-capacity').textContent = layers * 100;
+        }
+
+        // D2.4 Activity - Stability Test
+        function tiltTower(tower) {
+            const towerElement = document.getElementById(`tower${tower}`);
+            const result = document.getElementById(`result${tower}`);
+            
+            if (tower === 'A') {
+                towerElement.style.transform = 'rotate(25deg)';
+                result.textContent = '😟 Tower A tips easily!';
+                result.style.color = '#EF4444';
+            } else {
+                towerElement.style.transform = 'rotate(5deg)';
+                setTimeout(() => {
+                    towerElement.style.transform = 'rotate(0deg)';
+                }, 500);
+                result.textContent = '😊 Tower B stays stable!';
+                result.style.color = '#4ADE80';
+            }
+        }
+
+        function resetTowers() {
+            document.getElementById('towerA').style.transform = 'rotate(0deg)';
+            document.getElementById('towerB').style.transform = 'rotate(0deg)';
+            document.getElementById('resultA').textContent = '';
+            document.getElementById('resultB').textContent = '';
+        }
+
+        // D2.5 Activity
+        const d25Answers = {
+            'd25-q1': 'wood',
+            'd25-q2': 'fabric',
+            'd25-q3': 'steel'
+        };
+
+        function checkD25Activity() {
+            let correct = 0;
+            const total = 3;
+            
+            ['d25-q1', 'd25-q2', 'd25-q3'].forEach(qId => {
+                const selected = document.querySelector(`.option.selected[onclick*="${qId}"]`);
+                if (selected && selected.dataset.answer === d25Answers[qId]) {
+                    correct++;
+                }
+            });
+            
+            const feedback = document.getElementById('d25-feedback');
+            feedback.className = correct === total ? 'feedback correct show' : 'feedback incorrect show';
+            feedback.textContent = correct === total ? 
+                `🎉 Excellent! You chose the best materials!` : 
+                `You got ${correct} out of ${total} correct. Think about the properties needed!`;
+        }
+
+        // D2.6 Activity - Forces
+        function applyForce(force) {
+            const house = document.getElementById('d26-house');
+            const message = document.getElementById('d26-message');
+            
+            house.style.transform = '';
+            
+            setTimeout(() => {
+                if (force === 'gravity') {
+                    house.style.transform = 'translateY(20px)';
+                    message.textContent = '⬇️ Gravity pulls the house down! Foundations must be strong!';
+                } else if (force === 'wind') {
+                    house.style.transform = 'translateX(30px) rotate(5deg)';
+                    message.textContent = '💨 Wind pushes sideways! Strong walls help resist!';
+                } else if (force === 'snow') {
+                    house.style.transform = 'scale(0.95) translateY(15px)';
+                    message.textContent = '❄️ Snow adds weight to the roof! The structure must be strong!';
+                }
+            }, 100);
+        }
+
+        function resetForces() {
+            document.getElementById('d26-house').style.transform = '';
+            document.getElementById('d26-message').textContent = '';
+        }
+
+        // D2.7 Activity
+        const d27Answers = {
+            'd27-q1': 'strut',
+            'd27-q2': 'tie',
+            'd27-q3': 'strut',
+            'd27-q4': 'tie'
+        };
+
+        function checkD27Activity() {
+            let correct = 0;
+            const total = 4;
+            
+            Object.keys(d27Answers).forEach(qId => {
+                const selected = document.querySelector(`.option.selected[onclick*="${qId}"]`);
+                const allOptions = document.querySelectorAll(`[onclick*="${qId}"]`);
+                
+                allOptions.forEach(opt => {
+                    if (opt.classList.contains('selected')) {
+                        if (opt.dataset.answer === d27Answers[qId]) {
+                            opt.classList.add('correct');
+                            opt.classList.remove('incorrect');
+                            correct++;
+                        } else {
+                            opt.classList.add('incorrect');
+                            opt.classList.remove('correct');
+                        }
+                    }
+                });
+            });
+            
+            const feedback = document.getElementById('d27-feedback');
+            feedback.className = correct === total ? 'feedback correct show' : 'feedback incorrect show';
+            feedback.textContent = correct === total ? 
+                `🎉 Perfect! You understand struts and ties!` : 
+                `You got ${correct} out of ${total} correct. Remember: struts are pushed, ties are pulled!`;
+        }
+    </script>
+</body>
+</html>
