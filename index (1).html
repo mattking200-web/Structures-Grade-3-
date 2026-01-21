@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strong & Stable Structures! - Grade 3 Science</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Bangers&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #7C3AED;
+            --secondary: #EC4899;
+            --accent: #10B981;
+            --orange: #F59E0B;
+            --blue: #3B82F6;
+            --text: #1F2937;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: #1a1a2e;
+            color: var(--text);
+        }
+
+        .starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(180deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            font-family: 'Bangers', cursive;
+            font-size: 4rem;
+            color: white;
+            text-shadow: 3px 3px 0 #EC4899, 6px 6px 0 #7C3AED, 9px 9px 20px rgba(0,0,0,0.5);
+            margin-bottom: 0.5rem;
+            letter-spacing: 3px;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: white;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            background: rgba(30, 30, 60, 0.95);
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid #7C3AED;
+        }
+
+        nav.hidden { display: none; }
+
+        .back-button {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 101;
+            background: linear-gradient(135deg, #7C3AED, #EC4899);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4);
+        }
+
+        .back-button.show { display: block; }
+        .bottom-back-button { display: none; margin: 3rem auto; }
+        .bottom-back-button.show { display: block; }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(124,58,237,0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(124,58,237,0.6);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, #EC4899 0%, #F59E0B 100%);
+            transform: scale(1.05);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border: 3px solid;
+        }
+
+        .card h2 {
+            font-family: 'Bangers', cursive;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #EC4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .card h3 {
+            font-size: 2rem;
+            margin: 2rem 0 1rem;
+            color: #7C3AED;
+            font-weight: 700;
+        }
+
+        .card p {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            margin-bottom: 1rem;
+        }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .example-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border: 4px solid;
+        }
+
+        .example-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .icon {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .example-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .home-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            cursor: pointer;
+            border: 4px solid;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-15px) rotate(-3deg);
+        }
+
+        .topic-card .icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            .nav-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="starfield"></div>
+    
+    <header>
+        <h1>🏗️ STRONG & STABLE STRUCTURES! 🏗️</h1>
+        <p class="subtitle">Build Your Knowledge of Amazing Structures!</p>
+    </header>
+
+    <nav>
+        <div class="nav-grid">
+            <button class="nav-btn active" onclick="showPage('home', event)">🏠 Home</button>
+            <button class="nav-btn" onclick="showPage('d11', event)">D1.1 - Effects on Society</button>
+            <button class="nav-btn" onclick="showPage('d12', event)">D1.2 - Animal Structures</button>
+            <button class="nav-btn" onclick="showPage('d21', event)">D2.1 - What is a Structure?</button>
+            <button class="nav-btn" onclick="showPage('d22', event)">D2.2 - Form & Function</button>
+            <button class="nav-btn" onclick="showPage('d23', event)">D2.3 - Strength</button>
+        </div>
+    </nav>
+
+    <button class="back-button" id="backButton" onclick="showPage('home', event)">
+        ← Back to Lessons
+    </button>
+
+    <div class="container">
+        <div id="home" class="page active">
+            <div class="card" style="border-color: #7C3AED;">
+                <h2>Welcome, Structure Engineers! 🏗️</h2>
+                <p>Get ready for an amazing journey into the world of STRUCTURES! Structures are all around us - from bridges and buildings to bird nests and spider webs. They hold loads, keep their shape, and serve important functions!</p>
+                <p>Click on any topic below to start your adventure!</p>
+            </div>
+
+            <div class="home-grid">
+                <div class="topic-card" style="border-color: #7C3AED;" onclick="showPage('d11', event)">
+                    <div class="icon">🌍</div>
+                    <h3>Effects on Society</h3>
+                    <p>How structures impact our world!</p>
+                </div>
+                <div class="topic-card" style="border-color: #EC4899;" onclick="showPage('d12', event)">
+                    <div class="icon">🦫</div>
+                    <h3>Animal Structures</h3>
+                    <p>Amazing structures built by animals!</p>
+                </div>
+                <div class="topic-card" style="border-color: #F59E0B;" onclick="showPage('d21', event)">
+                    <div class="icon">🏛️</div>
+                    <h3>What is a Structure?</h3>
+                    <p>Learn the basics!</p>
+                </div>
+                <div class="topic-card" style="border-color: #10B981;" onclick="showPage('d22', event)">
+                    <div class="icon">⚙️</div>
+                    <h3>Form & Function</h3>
+                    <p>Shape matches purpose!</p>
+                </div>
+                <div class="topic-card" style="border-color: #3B82F6;" onclick="showPage('d23', event)">
+                    <div class="icon">💪</div>
+                    <h3>Strength</h3>
+                    <p>Supporting heavy loads!</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="d11" class="page">
+            <div class="card" style="border-color: #7C3AED;">
+                <h2>D1.1 - Effects on Society 🌍</h2>
+                <p>Structures have important effects on both society and the environment!</p>
+
+                <h3>Positive Effects ✅</h3>
+                <div class="example-grid">
+                    <div class="example-card" style="border-color: #10B981;">
+                        <div class="icon">🏠</div>
+                        <h4>Shelter</h4>
+                        <p>Protect us from weather!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #3B82F6;">
+                        <div class="icon">🌉</div>
+                        <h4>Transportation</h4>
+                        <p>Bridges connect communities!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #F59E0B;">
+                        <div class="icon">🏫</div>
+                        <h4>Education</h4>
+                        <p>Schools provide learning!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #EC4899;">
+                        <div class="icon">🏥</div>
+                        <h4>Healthcare</h4>
+                        <p>Hospitals keep us healthy!</p>
+                    </div>
+                </div>
+
+                <h3>Environmental Impacts 🌱</h3>
+                <p><strong>Negative:</strong> Using materials can harm nature, construction disturbs habitats</p>
+                <p><strong>Positive:</strong> We can use recycled materials and create green buildings!</p>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <button class="back-button bottom-back-button show" onclick="showPage('home', event)">
+                        ← Back to Lessons
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="d12" class="page">
+            <div class="card" style="border-color: #EC4899;">
+                <h2>D1.2 - Animal Structures 🦫</h2>
+                <p>Animals build amazing structures!</p>
+
+                <h3>Animal Builders 🐝</h3>
+                <div class="example-grid">
+                    <div class="example-card" style="border-color: #F59E0B;">
+                        <div class="icon">🦫</div>
+                        <h4>Beaver Dams</h4>
+                        <p>Built with sticks and mud!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #10B981;">
+                        <div class="icon">🐦</div>
+                        <h4>Bird Nests</h4>
+                        <p>Safe homes for eggs!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #7C3AED;">
+                        <div class="icon">🕷️</div>
+                        <h4>Spider Webs</h4>
+                        <p>Strong silk traps!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #3B82F6;">
+                        <div class="icon">🐝</div>
+                        <h4>Beehives</h4>
+                        <p>Hexagon honeycomb!</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <button class="back-button bottom-back-button show" onclick="showPage('home', event)">
+                        ← Back to Lessons
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="d21" class="page">
+            <div class="card" style="border-color: #F59E0B;">
+                <h2>D2.1 - What is a Structure? 🏛️</h2>
+                <p>A <strong>structure</strong> is a supporting framework that holds a load and has a definite size, shape, and function!</p>
+
+                <h3>Key Features 🔑</h3>
+                <div class="example-grid">
+                    <div class="example-card" style="border-color: #7C3AED;">
+                        <div class="icon">📏</div>
+                        <h4>Definite Size</h4>
+                        <p>Has specific measurements!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #EC4899;">
+                        <div class="icon">🔷</div>
+                        <h4>Definite Shape</h4>
+                        <p>Has a particular form!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #10B981;">
+                        <div class="icon">⚙️</div>
+                        <h4>Function</h4>
+                        <p>Does a specific job!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #F59E0B;">
+                        <div class="icon">💪</div>
+                        <h4>Holds a Load</h4>
+                        <p>Supports weight!</p>
+                    </div>
+                </div>
+
+                <h3>Natural Structures 🌿</h3>
+                <div class="example-grid">
+                    <div class="example-card" style="border-color: #10B981;">
+                        <div class="icon">🌳</div>
+                        <h4>Trees</h4>
+                        <p>Support branches!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #3B82F6;">
+                        <div class="icon">🦴</div>
+                        <h4>Skeletons</h4>
+                        <p>Support bodies!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #06B6D4;">
+                        <div class="icon">🪨</div>
+                        <h4>Mountains</h4>
+                        <p>Rock formations!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #14B8A6;">
+                        <div class="icon">🐚</div>
+                        <h4>Shells</h4>
+                        <p>Protect creatures!</p>
+                    </div>
+                </div>
+
+                <h3>Built Structures 🏗️</h3>
+                <div class="example-grid">
+                    <div class="example-card" style="border-color: #EF4444;">
+                        <div class="icon">🏠</div>
+                        <h4>Houses</h4>
+                        <p>Provide shelter!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #F59E0B;">
+                        <div class="icon">🌉</div>
+                        <h4>Bridges</h4>
+                        <p>Connect places!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #A855F7;">
+                        <div class="icon">🗼</div>
+                        <h4>Towers</h4>
+                        <p>Reach high!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #EC4899;">
+                        <div class="icon">🪑</div>
+                        <h4>Furniture</h4>
+                        <p>Support people!</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <button class="back-button bottom-back-button show" onclick="showPage('home', event)">
+                        ← Back to Lessons
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="d22" class="page">
+            <div class="card" style="border-color: #10B981;">
+                <h2>D2.2 - Form & Function ⚙️</h2>
+                <p>A structure's <strong>form</strong> (shape) matches its <strong>function</strong> (job)!</p>
+
+                <h3>Examples 🎯</h3>
+                <div class="example-grid">
+                    <div class="example-card" style="border-color: #3B82F6;">
+                        <div class="icon">🌉</div>
+                        <h4>Arched Bridge</h4>
+                        <p>Arch distributes weight!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #F59E0B;">
+                        <div class="icon">⛺</div>
+                        <h4>Pyramid Tent</h4>
+                        <p>Triangle sheds rain!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #EC4899;">
+                        <div class="icon">🪑</div>
+                        <h4>Chair</h4>
+                        <p>Fits human body!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #10B981;">
+                        <div class="icon">✈️</div>
+                        <h4>Airplane Wing</h4>
+                        <p>Curved for lift!</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <button class="back-button bottom-back-button show" onclick="showPage('home', event)">
+                        ← Back to Lessons
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="d23" class="page">
+            <div class="card" style="border-color: #3B82F6;">
+                <h2>D2.3 - Strength 💪</h2>
+                <p><strong>Strength</strong> is a structure's ability to support a load without breaking!</p>
+
+                <h3>What Makes Structures Strong? 🏗️</h3>
+                <div class="example-grid">
+                    <div class="example-card" style="border-color: #7C3AED;">
+                        <div class="icon">🧱</div>
+                        <h4>Strong Materials</h4>
+                        <p>Steel, concrete, thick wood!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #EC4899;">
+                        <div class="icon">📐</div>
+                        <h4>Good Design</h4>
+                        <p>Triangles add strength!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #10B981;">
+                        <div class="icon">➕</div>
+                        <h4>More Material</h4>
+                        <p>Thicker = stronger!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #F59E0B;">
+                        <div class="icon">🔗</div>
+                        <h4>Good Connections</h4>
+                        <p>Secure joints!</p>
+                    </div>
+                </div>
+
+                <h3>Ways to Increase Strength 📈</h3>
+                <div class="example-grid">
+                    <div class="example-card" style="border-color: #3B82F6;">
+                        <div class="icon">📏</div>
+                        <h4>Make it Thicker</h4>
+                        <p>More material!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #06B6D4;">
+                        <div class="icon">🔺</div>
+                        <h4>Add Triangles</h4>
+                        <p>Very strong shapes!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #14B8A6;">
+                        <div class="icon">🔧</div>
+                        <h4>Better Materials</h4>
+                        <p>Use stronger stuff!</p>
+                    </div>
+                    <div class="example-card" style="border-color: #A855F7;">
+                        <div class="icon">🏗️</div>
+                        <h4>Add Support</h4>
+                        <p>More beams!</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <button class="back-button bottom-back-button show" onclick="showPage('home', event)">
+                        ← Back to Lessons
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId, event) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(pageId).classList.add('active');
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+            
+            const nav = document.querySelector('nav');
+            const backButton = document.getElementById('backButton');
+            const bottomBackButtons = document.querySelectorAll('.bottom-back-button');
+            
+            if (pageId === 'home') {
+                nav.classList.remove('hidden');
+                backButton.classList.remove('show');
+            } else {
+                nav.classList.add('hidden');
+                backButton.classList.add('show');
+            }
+            
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
